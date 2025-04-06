@@ -1,25 +1,67 @@
-console.log("Hello World")
-
 function getComputerChoice(){
     // Gets a random number between 1 & 3
     let rand3 = Math.ceil(3 * Math.random());
 
     if (rand3 == 1){
-        return "Rock"
+        return "rock"
     } else if (rand3 == 2){
-        return "Paper"
+        return "paper"
     }else{
-        return "Scissors"
+        return "scissors"
     }
 }
 
 function getHumanChoice (){
-    let choice = prompt("Enter either rock, paper or scissors!", "rock")
+    let choice = prompt("Enter either rock, paper or scissors!", "rock").toLowerCase();
     
     return choice
 }
 
-console.log(getHumanChoice())
+function playGame(){
+    let humanScore, computerScore = 0;
+
+    function lose(){
+        computerScore++;
+        return "you lose"
+    }
+    
+    function win(){
+        humanScore++;
+        return "you win"
+    }
+    
+    function compare(computerChoice){
+        if(computerChoice == "paper"){
+            return lose();
+        } else {
+            return win();
+        }
+    }
+    
+    function playRound(humanChoice, computerChoice){
+        console.log(computerChoice)
+    
+    
+        if (humanChoice == computerChoice){
+            return "draw, try again"
+        }
+    
+        if (humanChoice === "rock"){
+            return compare(computerChoice);
+        }
+        else if (humanChoice === "paper"){
+            return compare(computerChoice);
+        }
+        else{
+            return compare(computerChoice)
+        }
+        
+    }
+    
+    console.log(playRound(getHumanChoice(), getComputerChoice()))
+}
+
+
 
 
 
