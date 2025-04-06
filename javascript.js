@@ -18,7 +18,8 @@ function getHumanChoice (){
 }
 
 function playGame(){
-    let humanScore, computerScore = 0;
+    let humanScore = 0;
+    let computerScore = 0;
 
     function lose(){
         computerScore++;
@@ -58,8 +59,15 @@ function playGame(){
         
     }
     
-    console.log(playRound(getHumanChoice(), getComputerChoice()))
+    for (let index = 0; index < 5; index++) {
+        console.log(playRound(getHumanChoice(), getComputerChoice()))
+    }
+
+    console.log(`Player score: ${humanScore} Computer score: ${computerScore}`)
+    
 }
+
+playGame()
 
 
 
