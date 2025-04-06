@@ -12,7 +12,7 @@ function getComputerChoice(){
 }
 
 function getHumanChoice (){
-    let choice = prompt("Enter either rock, paper or scissors!", "rock").toLowerCase();
+    let choice = prompt("Enter either rock, paper or scissors!", getComputerChoice()).toLowerCase();
     
     return choice
 }
@@ -31,8 +31,10 @@ function playGame(){
         return "you win"
     }
     
-    function compare(computerChoice){
-        if(computerChoice == "paper"){
+    //returns a win or a lose vs the computer
+    //if 
+    function compare(computerChoice, loser){
+        if(computerChoice == loser){
             return lose();
         } else {
             return win();
@@ -40,21 +42,20 @@ function playGame(){
     }
     
     function playRound(humanChoice, computerChoice){
-        console.log(computerChoice)
-    
+        console.log(`Your choice: ${humanChoice}. Computer choice: ${computerChoice}`)
     
         if (humanChoice == computerChoice){
             return "draw, try again"
         }
     
         if (humanChoice === "rock"){
-            return compare(computerChoice);
+            return compare(computerChoice, "paper");
         }
         else if (humanChoice === "paper"){
-            return compare(computerChoice);
+            return compare(computerChoice, "scissors");
         }
         else{
-            return compare(computerChoice)
+            return compare(computerChoice, "rock")
         }
         
     }
