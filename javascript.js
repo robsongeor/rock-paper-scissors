@@ -13,8 +13,19 @@ function getComputerChoice(){
 
 function getHumanChoice (){
     let choice = prompt("Enter either rock, paper or scissors!", getComputerChoice()).toLowerCase();
+
+    //If correct return the choice
+    if((choice == "rock" || choice == "paper" || choice == "scissors")){
+        return choice
+
+    }
+    // else recursivly repropmpts the user to enter another choice until correct.
+    else{
+        console.log("Invalid input")
+        choice = getHumanChoice();
+        return choice
+    }
     
-    return choice
 }
 
 function playGame(){
