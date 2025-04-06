@@ -31,8 +31,8 @@ function playGame(){
         return "you win"
     }
     
-    //returns a win or a lose vs the computer
-    //if 
+   
+    //checks to see if the computerChoice is a losing choice and returns the outcome
     function compare(computerChoice, loser){
         if(computerChoice == loser){
             return lose();
@@ -41,6 +41,9 @@ function playGame(){
         }
     }
     
+    //Plays a round of rock paper scissors.
+    //First checks to the if choices result in a draw -- Edge Case
+    //Checks humanChoice and returns approriate result -- see compare()
     function playRound(humanChoice, computerChoice){
         console.log(`Your choice: ${humanChoice}. Computer choice: ${computerChoice}`)
     
@@ -60,6 +63,7 @@ function playGame(){
         
     }
     
+    //Plays 5 rounds of rock paper scissors
     for (let index = 0; index < 5; index++) {
         console.log(playRound(getHumanChoice(), getComputerChoice()))
     }
@@ -68,7 +72,7 @@ function playGame(){
     
 }
 
-playGame()
+playGame();
 
 
 
