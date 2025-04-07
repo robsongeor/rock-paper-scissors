@@ -55,7 +55,7 @@ function playGame(){
                     element.textContent = `Player Score: ${humanScore.value}`
                     break;
                 case "nemesis-score":
-                    element.textContent = `Player Score: ${computerScore.value}`
+                    element.textContent = `Nemesis Score: ${computerScore.value}`
                     break;   
                 default:
                     break;

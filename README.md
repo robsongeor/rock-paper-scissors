@@ -1,3 +1,3 @@
 # rock-paper-scissors
 
-A console based Rock, Paper, Scissors game
+A Rock, Paper, Scissors game!
