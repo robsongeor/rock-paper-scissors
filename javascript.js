@@ -29,8 +29,8 @@ function getHumanChoice (){
 }
 
 function playGame(){
-    let humanScore = 0;
-    let computerScore = 0;
+    let humanScore = {value: 0};
+    let computerScore = {value: 0};
 
     const buttonContainer = document.getElementById("button-container")
     const handButtons = buttonContainer.querySelectorAll("button")
@@ -42,29 +42,42 @@ function playGame(){
             }
         );
     });
-    
 
-    function lose(){
-        computerScore++;
-        return "you lose"
-    }
-    
-    function win(){
-        humanScore++;
-        return "you win"
+    const results = document.getElementById("results");
+    const displayScores = results.querySelectorAll("p");
+
+    function getResultAndUpdateScore(outcome, scoreToIncrement){
+        scoreToIncrement.value++;
+
+        displayScores.forEach(element => {
+            switch (element.className) {
+                case "player-score":
+                    element.textContent = `Player Score: ${humanScore.value}`
+                    break;
+                case "nemesis-score":
+                    element.textContent = `Player Score: ${computerScore.value}`
+                    break;   
+                default:
+                    break;
+            }
+        });
+
+        console.log(`Player score: ${humanScore.value} Computer score: ${computerScore.value}`)
+
+        return outcome;
     }
     
     //checks to see if the computerChoice is a losing choice and returns the outcome
     function compare(computerChoice, loser){
         if(computerChoice == loser){
-            return lose();
+            return getResultAndUpdateScore("you lose", computerScore)
         } else {
-            return win();
+            return getResultAndUpdateScore("you win", humanScore)
         }
     }
  
     function playRound(humanChoice, computerChoice){
-        
+
         //Plays a round of rock paper scissors.
         //First checks to the if choices result in a draw -- Edge Case
         //Checks humanChoice and returns approriate result -- see compare()
@@ -84,9 +97,11 @@ function playGame(){
             return compare(computerChoice, "rock")
         }
         
+        
+        
     }
     
-    console.log(`Player score: ${humanScore} Computer score: ${computerScore}`)
+   
 
 
 }
