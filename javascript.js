@@ -67,8 +67,8 @@ function playGame(){
         return outcome;
     }
     
-    //checks to see if the computerChoice is a losing choice and returns the outcome
-    function compare(computerChoice, loser){
+    //checks to see if the computerChoice is a losing choice then updates score and returns the outcome
+    function isLoser(computerChoice, loser){
         if(computerChoice == loser){
             return getResultAndUpdateScore("you lose", computerScore)
         } else {
@@ -88,13 +88,13 @@ function playGame(){
         }
     
         if (humanChoice === "rock"){
-            return compare(computerChoice, "paper");
+            return isLoser(computerChoice, "paper");
         }
         else if (humanChoice === "paper"){
-            return compare(computerChoice, "scissors");
+            return isLoser(computerChoice, "scissors");
         }
         else{
-            return compare(computerChoice, "rock")
+            return isLoser(computerChoice, "rock")
         }
         
         
