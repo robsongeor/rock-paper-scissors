@@ -32,20 +32,25 @@ function playGame(){
     let humanScore = {value: 0};
     let computerScore = {value: 0};
 
+    const results = document.getElementById("results");
+    const displayScores = results.querySelectorAll("p");
+
     const buttonContainer = document.getElementById("button-container")
     const handButtons = buttonContainer.querySelectorAll("button")
+
+    const outcome = document.getElementById("outcome")
 
     //When a hand button is clicked play a round with the selected hand
     handButtons.forEach((element) => {
         element.addEventListener('click', (e) => {
-            playRound(element.textContent.toLowerCase(), getComputerChoice())
+            let nemesisChoice = getComputerChoice()
+            let result = playRound(element.textContent.toLowerCase(), nemesisChoice);
+            outcome.textContent = `Nemesis chose ${nemesisChoice}. ${result}`
             }
         );
     });
 
-    const results = document.getElementById("results");
-    const displayScores = results.querySelectorAll("p");
-
+    
     function getResultAndUpdateScore(outcome, scoreToIncrement){
         scoreToIncrement.value++;
 
@@ -70,21 +75,23 @@ function playGame(){
     //checks to see if the computerChoice is a losing choice then updates score and returns the outcome
     function isLoser(computerChoice, loser){
         if(computerChoice == loser){
-            return getResultAndUpdateScore("you lose", computerScore)
+            return getResultAndUpdateScore("You lose!", computerScore)
         } else {
-            return getResultAndUpdateScore("you win", humanScore)
+            return getResultAndUpdateScore("You win!", humanScore)
         }
     }
  
     function playRound(humanChoice, computerChoice){
+        if (humanScore.value + computerScore.value == 5){
+            humanScore = {value: 0};
+            computerScore = {value: 0};
+        }
 
         //Plays a round of rock paper scissors.
         //First checks to the if choices result in a draw -- Edge Case
         //Checks humanChoice and returns approriate result -- see compare()
-        console.log(`Your choice: ${humanChoice}. Computer choice: ${computerChoice}`)
-    
         if (humanChoice == computerChoice){
-            return "draw, try again"
+            return "Draw, try again."
         }
     
         if (humanChoice === "rock"){
@@ -101,8 +108,14 @@ function playGame(){
         
     }
     
-   
-
+   /* TO DO
+        - Disply CPU hand after button is clicked
+        - Display winner of the last round
+        - Display winner after 5 rounds
+        - Selecting new hand starts a new round
+    
+   */
+    
 
 }
 
